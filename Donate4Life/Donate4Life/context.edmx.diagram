@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b2eb4de789d14d45a38f0a8be219419c" Name="Diagram1" >
+        <EntityTypeShape EntityType="Donate4LifeModel.Donors" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Donate4LifeModel.Tokens" Width="1.5" PointX="5.625" PointY="5.125" />
+        <EntityTypeShape EntityType="Donate4LifeModel.Users" Width="1.5" PointX="3.375" PointY="2.375" />
+        <EntityTypeShape EntityType="Donate4LifeModel.UsersFavourites" Width="1.5" PointX="5.625" PointY="1.75" />
+        <AssociationConnector Association="Donate4LifeModel.FK__UsersFavo__Donor__1BFD2C07" />
+        <AssociationConnector Association="Donate4LifeModel.FK__Tokens__UserId__1ED998B2" />
+        <AssociationConnector Association="Donate4LifeModel.FK__UsersFavo__UserI__1B0907CE" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

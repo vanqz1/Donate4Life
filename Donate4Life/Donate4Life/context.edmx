@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Donate4LifeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Donors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="EyeColor" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="HairColor" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Kilos" Type="int" Nullable="false" />
+          <Property Name="Height" Type="int" Nullable="false" />
+          <Property Name="Town" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AddedDate" Type="datetime" Nullable="false" />
+          <Property Name="Views" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tokens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="AuthToken" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="IssuedOn" Type="datetime" Nullable="false" />
+          <Property Name="ExpiresOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersFavourites">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="DonorId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Tokens__UserId__1ED998B2">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Tokens" Type="Self.Tokens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tokens">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersFavo__Donor__1BFD2C07">
+          <End Role="Donors" Type="Self.Donors" Multiplicity="1" />
+          <End Role="UsersFavourites" Type="Self.UsersFavourites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersFavourites">
+              <PropertyRef Name="DonorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersFavo__UserI__1B0907CE">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UsersFavourites" Type="Self.UsersFavourites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersFavourites">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Donate4LifeModelStoreContainer">
+          <EntitySet Name="Donors" EntityType="Self.Donors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tokens" EntityType="Self.Tokens" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersFavourites" EntityType="Self.UsersFavourites" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Tokens__UserId__1ED998B2" Association="Self.FK__Tokens__UserId__1ED998B2">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tokens" EntitySet="Tokens" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersFavo__Donor__1BFD2C07" Association="Self.FK__UsersFavo__Donor__1BFD2C07">
+            <End Role="Donors" EntitySet="Donors" />
+            <End Role="UsersFavourites" EntitySet="UsersFavourites" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersFavo__UserI__1B0907CE" Association="Self.FK__UsersFavo__UserI__1B0907CE">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersFavourites" EntitySet="UsersFavourites" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Donate4LifeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Donate4LifeEntities1" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Donors" EntityType="Donate4LifeModel.Donors" />
+          <EntitySet Name="Tokens" EntityType="Donate4LifeModel.Tokens" />
+          <EntitySet Name="Users" EntityType="Donate4LifeModel.Users" />
+          <EntitySet Name="UsersFavourites" EntityType="Donate4LifeModel.UsersFavourites" />
+          <AssociationSet Name="FK__UsersFavo__Donor__1BFD2C07" Association="Donate4LifeModel.FK__UsersFavo__Donor__1BFD2C07">
+            <End Role="Donors" EntitySet="Donors" />
+            <End Role="UsersFavourites" EntitySet="UsersFavourites" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tokens__UserId__1ED998B2" Association="Donate4LifeModel.FK__Tokens__UserId__1ED998B2">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tokens" EntitySet="Tokens" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersFavo__UserI__1B0907CE" Association="Donate4LifeModel.FK__UsersFavo__UserI__1B0907CE">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersFavourites" EntitySet="UsersFavourites" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Donors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="EyeColor" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="HairColor" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Kilos" Type="Int32" Nullable="false" />
+          <Property Name="Height" Type="Int32" Nullable="false" />
+          <Property Name="Town" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AddedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Views" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UsersFavourites" Relationship="Donate4LifeModel.FK__UsersFavo__Donor__1BFD2C07" FromRole="Donors" ToRole="UsersFavourites" />
+        </EntityType>
+        <EntityType Name="Tokens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="AuthToken" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IssuedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpiresOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="Donate4LifeModel.FK__Tokens__UserId__1ED998B2" FromRole="Tokens" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Tokens" Relationship="Donate4LifeModel.FK__Tokens__UserId__1ED998B2" FromRole="Users" ToRole="Tokens" />
+          <NavigationProperty Name="UsersFavourites" Relationship="Donate4LifeModel.FK__UsersFavo__UserI__1B0907CE" FromRole="Users" ToRole="UsersFavourites" />
+        </EntityType>
+        <EntityType Name="UsersFavourites">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="DonorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Donors" Relationship="Donate4LifeModel.FK__UsersFavo__Donor__1BFD2C07" FromRole="UsersFavourites" ToRole="Donors" />
+          <NavigationProperty Name="Users" Relationship="Donate4LifeModel.FK__UsersFavo__UserI__1B0907CE" FromRole="UsersFavourites" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK__UsersFavo__Donor__1BFD2C07">
+          <End Type="Donate4LifeModel.Donors" Role="Donors" Multiplicity="1" />
+          <End Type="Donate4LifeModel.UsersFavourites" Role="UsersFavourites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersFavourites">
+              <PropertyRef Name="DonorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tokens__UserId__1ED998B2">
+          <End Type="Donate4LifeModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="Donate4LifeModel.Tokens" Role="Tokens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tokens">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersFavo__UserI__1B0907CE">
+          <End Type="Donate4LifeModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="Donate4LifeModel.UsersFavourites" Role="UsersFavourites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersFavourites">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Donate4LifeModelStoreContainer" CdmEntityContainer="Donate4LifeEntities1" >
+          <EntitySetMapping Name="Donors">
+            <EntityTypeMapping TypeName="Donate4LifeModel.Donors">
+              <MappingFragment StoreEntitySet="Donors">
+                <ScalarProperty Name="Views" ColumnName="Views" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="Town" ColumnName="Town" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Kilos" ColumnName="Kilos" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="HairColor" ColumnName="HairColor" />
+                <ScalarProperty Name="EyeColor" ColumnName="EyeColor" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tokens">
+            <EntityTypeMapping TypeName="Donate4LifeModel.Tokens">
+              <MappingFragment StoreEntitySet="Tokens">
+                <ScalarProperty Name="ExpiresOn" ColumnName="ExpiresOn" />
+                <ScalarProperty Name="IssuedOn" ColumnName="IssuedOn" />
+                <ScalarProperty Name="AuthToken" ColumnName="AuthToken" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Donate4LifeModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersFavourites">
+            <EntityTypeMapping TypeName="Donate4LifeModel.UsersFavourites">
+              <MappingFragment StoreEntitySet="UsersFavourites">
+                <ScalarProperty Name="DonorId" ColumnName="DonorId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
