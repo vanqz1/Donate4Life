@@ -17,5 +17,9 @@ namespace Donate4Life
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        void OnSessionStart()
+        {
+        }
     }
 }
