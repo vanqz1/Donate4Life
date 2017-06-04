@@ -119,7 +119,7 @@ namespace Donate4Life.Controllers
         {
             try
             {
-                var userId = 4;//int.Parse(Session["UserId"].ToString());
+                var userId = int.Parse(Session["UserId"].ToString());
 
                 using (var context = new Donate4LifeEntities1())
                 {

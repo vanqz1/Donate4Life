@@ -1,0 +1,136 @@
+﻿<nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+        <li class="sidebar-brand">
+            <a href="./index.html" onclick=$( "#menu-close" ).click();>Donate4Life</a>
+        </li>
+        <li>
+            <a href="./index.html" onclick=$( "#menu-close" ).click();>Начало</a>
+        </li>
+        <li>
+            <a href="./index.html#about" onclick=$( "#menu-close" ).click();>За нас</a>
+        </li>
+        <li>
+            <a href="./index.html#team" onclick=$( "#menu-close" ).click();>Контакти</a>
+        </li>
+        <li>
+            <a href="./catalogue.html" onclick=$( "#menu-close" ).click();>Каталог</a>
+        </li>
+        <li>
+            <a href="./profile.html" onclick=$( "#menu-close" ).click();>Моят профил</a>
+        </li>
+        <li>
+            <a href="#top" onclick=$( "#menu-close" ).click();>Вход/Регистрация</a>
+        </li>
+    </ul>
+</nav>
+<script src="/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+<script>
+                                       // Closes the sidebar menu
+                                       $("#menu-close").click(function (e) {
+                                           e.preventDefault();
+                                           $("#sidebar-wrapper").toggleClass("active");
+                                       });
+                                       // Opens the sidebar menu
+                                       $("#menu-toggle").click(function (e) {
+                                           e.preventDefault();
+                                           $("#sidebar-wrapper").toggleClass("active");
+                                       });
+                                       // Scrolls to the selected menu item on the page
+                                       $(function () {
+                                           $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function () {
+                                               if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+                                                   var target = $(this.hash);
+                                                   target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                                                   if (target.length) {
+                                                       $('html,body').animate({
+                                                           scrollTop: target.offset().top
+                                                       }, 1000);
+                                                       return false;
+                                                   }
+                                               }
+                                           });
+                                       });
+                                       //#to-top button appears after scrolling
+                                       var fixed = false;
+                                       $(document).scroll(function () {
+                                           if ($(this).scrollTop() > 250) {
+                                               if (!fixed) {
+                                                   fixed = true;
+                                                   // $('#to-top').css({position:'fixed', display:'block'});
+                                                   $('#to-top').show("slow", function () {
+                                                       $('#to-top').css({
+                                                           position: 'fixed',
+                                                           display: 'block'
+                                                       });
+                                                   });
+                                               }
+                                           } else {
+                                               if (fixed) {
+                                                   fixed = false;
+                                                   $('#to-top').hide("slow", function () {
+                                                       $('#to-top').css({
+                                                           display: 'none'
+                                                       });
+                                                   });
+                                               }
+                                           }
+                                       });
+                                       // Disable Google Maps scrolling
+                                       // See http://stackoverflow.com/a/25904582/1607849
+                                       // Disable scroll zooming and bind back the click event
+                                       var onMapMouseleaveHandler = function (event) {
+                                           var that = $(this);
+                                           that.on('click', onMapClickHandler);
+                                           that.off('mouseleave', onMapMouseleaveHandler);
+                                           that.find('iframe').css("pointer-events", "none");
+                                       }
+                                       var onMapClickHandler = function (event) {
+                                           var that = $(this);
+                                           // Disable the click handler until the user leaves the map area
+                                           that.off('click', onMapClickHandler);
+                                           // Enable scrolling zoom
+                                           that.find('iframe').css("pointer-events", "auto");
+                                           // Handle the mouse leave event
+                                           that.on('mouseleave', onMapMouseleaveHandler);
+                                       }
+                                       // Enable map zooming with mouse scroll when the user clicks the map
+                                       $('.map').on('click', onMapClickHandler);
+
+                                       $(document).ready(function () {
+                                           var panels = $('.user-infos');
+                                           var panelsButton = $('.dropdown-user');
+                                           panels.hide();
+
+                                           //Click dropdown
+                                           panelsButton.click(function () {
+                                               //get data-for attribute
+                                               var dataFor = $(this).attr('data-for');
+                                               var idFor = $(dataFor);
+
+                                               //current button
+                                               var currentButton = $(this);
+                                               idFor.slideToggle(400, function () {
+                                                   //Completed slidetoggle
+                                                   if (idFor.is(':visible')) {
+                                                       currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
+                                                   }
+                                                   else {
+                                                       currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
+                                                   }
+                                               })
+                                           });
+
+
+                                           $('[data-toggle="tooltip"]').tooltip();
+
+                                           $('button').click(function (e) {
+                                               e.preventDefault();
+                                               alert("This is a demo.\n :-)");
+                                           });
+                                       });
+</script>
+

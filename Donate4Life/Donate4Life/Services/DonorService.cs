@@ -1,4 +1,5 @@
 ﻿using Donate4Life.Models;
+using System;
 
 namespace Donate4Life.Services
 {
@@ -16,8 +17,8 @@ namespace Donate4Life.Services
                     Height = donor.Height,
                     Kilos = donor.Kilous,
                     Town = donor.Town,
-                    Views = donor.Views,
-                    AddedDate = donor.AddedDay
+                    Views = 0,
+                    AddedDate = DateTime.Now
                 });
 
                 context.SaveChanges();             

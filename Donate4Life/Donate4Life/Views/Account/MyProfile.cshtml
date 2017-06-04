@@ -23,7 +23,7 @@
     <link href="/css/profile.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet"
           type="text/css">
 
@@ -40,32 +40,7 @@
 
     <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-    <nav id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <li class="sidebar-brand">
-                <a href="./index.html" onclick=$( "#menu-close" ).click();>Donate4Life</a>
-            </li>
-            <li>
-                <a href="./index.html" onclick=$( "#menu-close" ).click();>Начало</a>
-            </li>
-            <li>
-                <a href="./index.html#about" onclick=$( "#menu-close" ).click();>За нас</a>
-            </li>
-            <li>
-                <a href="./index.html#team" onclick=$( "#menu-close" ).click();>Контакти</a>
-            </li>
-            <li>
-                <a href="./catalogue.html" onclick=$( "#menu-close" ).click();>Каталог</a>
-            </li>
-            <li>
-                <a href="./profile.html" onclick=$( "#menu-close" ).click();>Моят профил</a>
-            </li>
-            <li>
-                <a href="#top" onclick=$( "#menu-close" ).click();>Вход/Регистрация</a>
-            </li>
-        </ul>
-    </nav>
+   @Html.Partial("~/Views/Partials/SideBar.cshtml");
 
     <!-- Header -->
     <header id="top" class="header">

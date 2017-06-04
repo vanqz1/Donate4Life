@@ -237,6 +237,7 @@
     <Compile Include="UsersFavourites.cs">
       <DependentUpon>context.tt</DependentUpon>
     </Compile>
+    <Compile Include="ValidationAttributes\PosNumberNoZeroAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -251,10 +252,34 @@
       <DependentUpon>context.edmx</DependentUpon>
       <LastGenOutput>context.cs</LastGenOutput>
     </Content>
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\donor_details.css" />
+    <Content Include="css\edit_donor.css" />
+    <Content Include="css\login.css" />
+    <Content Include="css\profile.css" />
+    <Content Include="css\stylish-portfolio.css" />
+    <Content Include="css\view_donor_admin.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\beti.jpg" />
+    <Content Include="img\bg.jpg" />
+    <Content Include="img\catalogue_back.jpg" />
+    <Content Include="img\dani.jpg" />
+    <Content Include="img\ema.jpg" />
+    <Content Include="img\evgeni.jpg" />
+    <Content Include="img\header-logo.png" />
+    <Content Include="img\header1.jpg" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\logo_min.png" />
+    <Content Include="img\profile_back.jpg" />
+    <Content Include="img\this_home1.png" />
+    <Content Include="img\vanq.jpg" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\jquery.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -302,13 +327,12 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\MyProfile.cshtml" />
     <Content Include="Views\Account\EditProfile.cshtml" />
+    <Content Include="Views\Partials\SideBar.cshtml" />
+    <Content Include="Views\Donor\EditDonor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="css\" />
     <Folder Include="font-awesome\" />
-    <Folder Include="img\" />
-    <Folder Include="js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
