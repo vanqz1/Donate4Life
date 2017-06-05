@@ -5,22 +5,26 @@
             <a href="./index.html" onclick=$( "#menu-close" ).click();>Donate4Life</a>
         </li>
         <li>
-            <a href="./index.html" onclick=$( "#menu-close" ).click();>Начало</a>
-        </li>
-        <li>
-            <a href="./index.html#about" onclick=$( "#menu-close" ).click();>За нас</a>
-        </li>
-        <li>
-            <a href="./index.html#team" onclick=$( "#menu-close" ).click();>Контакти</a>
+            <a href="@Url.Action("Index", "Home")">Начало</a>
         </li>
         <li>
             <a href="./catalogue.html" onclick=$( "#menu-close" ).click();>Каталог</a>
         </li>
         <li>
-            <a href="./profile.html" onclick=$( "#menu-close" ).click();>Моят профил</a>
+            <a href="@Url.Action("MyProfile", "Account")">Моят профил</a>
         </li>
         <li>
-            <a href="#top" onclick=$( "#menu-close" ).click();>Вход/Регистрация</a>
+                   @{
+                        var isUserLoggedIn = Convert.ToInt32(Session["UserId"]) != 0;
+                        if (isUserLoggedIn)
+                        {
+                            <a href = "@Url.Action("Logout", "Account")"> Изход </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Login", "Account")">Вход</a>
+                        }
+                    }
         </li>
     </ul>
 </nav>

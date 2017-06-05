@@ -46,7 +46,17 @@
                 <a href="#profile" onclick=$("#menu-close").click();>Моят профил</a>
             </li>
             <li>
-                <a href="#profile" onclick=$("#menu-close").click();>Вход/Регистрация</a>
+               @{
+                   var isUserLoggedIn = Convert.ToInt32(Session["UserId"]) != 0;
+                   if (isUserLoggedIn)
+                   {
+                    <a href="@Url.Action("Logout", "Account")"> Изход </a>
+                   }
+                   else
+                   {
+                    <a href="@Url.Action("Login", "Account")">Вход</a>
+                   }
+            }
             </li>
         </ul>
     </nav>
@@ -154,25 +164,41 @@
         <div class="container">
             <div class="row">
                 <div class="buttons">
+                        @{
+                            var isUserLogged = Convert.ToInt32(Session["UserId"]) != 0;
                     <div>
-                        <span>  @Html.ActionLink("Моят профил", "MyProfile", "Account", null, new { @class = "log" })</span>
-                        <span>  @Html.ActionLink("Вход/Регистрация", "Login", "Account", null, new { @class = "log" })</span>
+                        @if(isUserLogged)
+                        {
+                          <span>  @Html.ActionLink("Моят профил", "MyProfile", "Account", null, new { @class = "log" })</span>
+                        }
+                        else
+                        {
+                            <span>  @Html.ActionLink("Вход/Регистрация", "Login", "Account", null, new { @class = "log" })</span>
+                        }
                     </div>
-                    <div id="menuBall1" class="menuBall">
-                        <a href="@Url.Action("MyProfile","Account")" class="ball blueball">
-                            <div class="menuText">
-                                Натисни
+                   
+                        
+                        if (isUserLogged)
+                        {
+                            <div id="menuBall1" class="menuBall">
+                                <a href="@Url.Action("MyProfile", "Account")" class="ball blueball">
+                                    <div class="menuText">
+                                        Натисни
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-
-                    <div id="menuBall1" class="menuBall">
-                        <a href="@Url.Action("Registration","Account")" class="ball blueball">
-                            <div class="menuText">
-                                Натисни
+                        }
+                        else
+                        {
+                            <div id="menuBall1" class="menuBall">
+                                <a href="@Url.Action("Registration", "Account")" class="ball blueball">
+                                    <div class="menuText">
+                                        Натисни
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
+                        }
+                    }
                 </div>
             </div>
         </div>

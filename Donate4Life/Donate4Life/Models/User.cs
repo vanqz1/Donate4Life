@@ -16,5 +16,7 @@ namespace Donate4Life.Models
 
         [Required(ErrorMessage = "Потвърждаването на паролата е задължително поле.")]
         public string ConfirmPassword { get; set; }
+
+        public int Id { get; set; }
     }
 }

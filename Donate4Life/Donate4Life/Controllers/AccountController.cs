@@ -106,11 +106,11 @@ namespace Donate4Life.Controllers
         
         public ActionResult Logout()
         {
-            var userId = (int)Session["UserId"];
+            var userId = Convert.ToInt32(Session["UserId"]);
             var tokenService = new TokenService();
 
             tokenService.RemoveTokensByUserId(userId);
-            Session["UserId"] = 0;
+            Session["UserId"] = null;
 
             return RedirectToAction("Index", "Home");
         }
@@ -130,10 +130,21 @@ namespace Donate4Life.Controllers
                         return RedirectToAction("Index", "Home");
                     }
 
+                    if (user.IsAdmin)
+                    {
+                        return View("~/Views/Account/AdminProfile.cshtml", new User
+                        {
+                            Username = user.UserName,
+                            Email = user.Email,
+                            Id = user.Id
+                        });
+                    }
+
                     return View(new User
                     {
                         Username = user.UserName,
-                        Email = user.Email
+                        Email = user.Email,
+                        Id = user.Id
                     });
                 }
             }
@@ -212,7 +223,7 @@ namespace Donate4Life.Controllers
                 }
 
                 user.Password = editProfile.NewPassword;
-
+                user.Password = editProfile.NewPassword;
                 context.SaveChanges();
             }
 
