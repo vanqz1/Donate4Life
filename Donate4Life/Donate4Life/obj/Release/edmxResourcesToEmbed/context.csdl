@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Donate4LifeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Donate4LifeEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Donors" EntityType="Donate4LifeModel.Donors" />
+    <EntitySet Name="Tokens" EntityType="Donate4LifeModel.Tokens" />
+    <EntitySet Name="Users" EntityType="Donate4LifeModel.Users" />
+    <EntitySet Name="UsersFavourites" EntityType="Donate4LifeModel.UsersFavourites" />
+    <AssociationSet Name="FK__UsersFavo__Donor__1BFD2C07" Association="Donate4LifeModel.FK__UsersFavo__Donor__1BFD2C07">
+      <End Role="Donors" EntitySet="Donors" />
+      <End Role="UsersFavourites" EntitySet="UsersFavourites" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tokens__UserId__1ED998B2" Association="Donate4LifeModel.FK__Tokens__UserId__1ED998B2">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Tokens" EntitySet="Tokens" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UsersFavo__UserI__1B0907CE" Association="Donate4LifeModel.FK__UsersFavo__UserI__1B0907CE">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersFavourites" EntitySet="UsersFavourites" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Donors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="EyeColor" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="HairColor" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="Kilos" Type="Int32" Nullable="false" />
+    <Property Name="Height" Type="Int32" Nullable="false" />
+    <Property Name="Town" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AddedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Views" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="UsersFavourites" Relationship="Donate4LifeModel.FK__UsersFavo__Donor__1BFD2C07" FromRole="Donors" ToRole="UsersFavourites" />
+  </EntityType>
+  <EntityType Name="Tokens">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="AuthToken" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="IssuedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpiresOn" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Users" Relationship="Donate4LifeModel.FK__Tokens__UserId__1ED998B2" FromRole="Tokens" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Tokens" Relationship="Donate4LifeModel.FK__Tokens__UserId__1ED998B2" FromRole="Users" ToRole="Tokens" />
+    <NavigationProperty Name="UsersFavourites" Relationship="Donate4LifeModel.FK__UsersFavo__UserI__1B0907CE" FromRole="Users" ToRole="UsersFavourites" />
+  </EntityType>
+  <EntityType Name="UsersFavourites">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="DonorId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Donors" Relationship="Donate4LifeModel.FK__UsersFavo__Donor__1BFD2C07" FromRole="UsersFavourites" ToRole="Donors" />
+    <NavigationProperty Name="Users" Relationship="Donate4LifeModel.FK__UsersFavo__UserI__1B0907CE" FromRole="UsersFavourites" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK__UsersFavo__Donor__1BFD2C07">
+    <End Type="Donate4LifeModel.Donors" Role="Donors" Multiplicity="1" />
+    <End Type="Donate4LifeModel.UsersFavourites" Role="UsersFavourites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Donors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsersFavourites">
+        <PropertyRef Name="DonorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tokens__UserId__1ED998B2">
+    <End Type="Donate4LifeModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="Donate4LifeModel.Tokens" Role="Tokens" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tokens">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UsersFavo__UserI__1B0907CE">
+    <End Type="Donate4LifeModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="Donate4LifeModel.UsersFavourites" Role="UsersFavourites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsersFavourites">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

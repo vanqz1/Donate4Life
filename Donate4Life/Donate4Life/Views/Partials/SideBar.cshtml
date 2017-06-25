@@ -8,7 +8,7 @@
             <a href="@Url.Action("Index", "Home")">Начало</a>
         </li>
         <li>
-            <a href="./catalogue.html" onclick=$( "#menu-close" ).click();>Каталог</a>
+            <a href="@Url.Action("ListAllDonors", "Donor")" onclick=$( "#menu-close" ).click();>Каталог</a>
         </li>
         <li>
             <a href="@Url.Action("MyProfile", "Account")">Моят профил</a>
@@ -131,10 +131,6 @@
 
                                            $('[data-toggle="tooltip"]').tooltip();
 
-                                           $('button').click(function (e) {
-                                               e.preventDefault();
-                                               alert("This is a demo.\n :-)");
-                                           });
                                        });
 </script>
 

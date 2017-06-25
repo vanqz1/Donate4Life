@@ -1,0 +1,169 @@
+﻿@model List<Donate4Life.Models.Donor>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Donate4Life</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/css/stylish-portfolio.css" rel="stylesheet">
+
+    <link href="/css/login.css" rel="stylesheet">
+    <link href="/css/catalogue.css" rel="stylesheet">
+    <link href="/css/donor_details.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+          type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+    @Html.Partial("~/Views/Partials/SideBar.cshtml");
+
+    <!-- Header -->
+    <section id="cat_top"></section>
+
+    <section id="catalog" class="catalog">
+
+       
+
+        @{
+            Html.RenderAction("ListDonorsByCriteria", "Donor");
+        }
+
+
+        <div class="row main_row">
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+
+                @if (Model != null)
+                {
+                    foreach (var donor in Model)
+                    {
+                        <div class="panel panel-info" style="margin-left: 20px;">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Донор @donor.Id <span></span></h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="/img/logo_min.png" class="img-circle img-responsive"> </div>
+
+                                    <div class=" col-md-9 col-lg-9 ">
+                                        <table class="table table-user-information">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Години:</td>
+                                                    <td>@donor.Age</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Населено място:</td>
+                                                    <td>@donor.Town</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Височина:</td>
+                                                    <td>@donor.Height</td>
+                                                </tr>
+                                                <tr>
+                                                <tr>
+                                                    <td>Цвят на очите:</td>
+                                                    <td>@donor.EyeColor</td>
+                                                </tr>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        @Html.ActionLink("Разгледай", "DonorDetails", "Donor", donor, new { @class = "btn btn-primary" })
+                                        @{
+                                            var isUserLoggedIn = Convert.ToInt32(Session["UserId"]) != 0;
+                                            var isDonorInUserFav = new Donate4Life.Services.DonorService().CheckIfDonorIsInUserFav(Convert.ToInt32(Session["UserId"]), donor.Id);
+                                            var isUserAdmin = new Donate4Life.Services.AccountService().IsUserAdmin(Convert.ToInt32(Session["UserId"]));
+
+                                            if (isUserLoggedIn && !isDonorInUserFav && !isUserAdmin)
+                                            {
+                                                @Html.ActionLink("Добави в предпочитани", "AddDonorToFavourites", "Donor", donor, new { @class = "btn btn-primary" })
+                                            }
+
+                                           
+
+                                            if (isUserAdmin)
+                                            {
+                                                @Html.ActionLink("Редактирай", "EditDonor", "Donor", donor, new { @class = "btn btn-danger",@style= "margin-left: 5px;" })
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                }
+                                            }
+            </div>
+        </div>
+
+
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container" id="footer">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4>
+                        <strong>Donate4Life</strong>
+                    </h4>
+                    <br>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                        </li>
+                    </ul>
+                    <hr class="small">
+                    <p class="text-muted">Copyright &copy; Donate4Life 2017</p>
+                </div>
+            </div>
+        </div>
+        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+
+
+
+</body>
+
+</html>

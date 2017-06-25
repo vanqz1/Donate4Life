@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="Donate4LifeEntities1-Web.config Connection String" description="Donate4LifeEntities1 Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/context.csdl|res://*/context.ssdl|res://*/context.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=tcp:donate4life.database.windows.net;initial catalog=Donate4Life;User ID=donate4lifeadmin@donate4life.database.windows.net;Password=123v123mvm@;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Projects\\Donate4Life\\Donate4Life\\Donate4Life\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Donate4LifeEntities1']/@connectionString" />
+  </parameter>
+</parameters>

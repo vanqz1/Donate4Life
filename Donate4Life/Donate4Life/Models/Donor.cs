@@ -19,6 +19,7 @@ namespace Donate4Life.Models
                 "синьо-зелени",
                 "синьо-сиви"
             };
+
         public List<string> listHairColor = new List<string>
             {
                "кафява",

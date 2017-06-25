@@ -105,7 +105,7 @@
                 </div>
                 <div class="column">
                     <div class="card">
-                        <img src="/img/vanq.jpg" alt="Ivanka" style="width:100%">
+                        <img src="~/img/vanq12.jpg" alt="Ivanka" style="width:100%;">
                         <div class="container">
                             <h2 class="small_text">Иванка Зайчева</h2>
                             <p class="title">Lead Developer</p>
@@ -125,7 +125,7 @@
                 </div>
                 <div class="column">
                     <div class="card">
-                        <img src="/img/evgeni.jpg" alt="Evgeni" style="width:100%">
+                        <img src="~/img/evgeni1.jpg" alt="Evgeni" style="width:100%">
                         <div class="container">
                             <h2 class="small_text">Евгени Стойков</h2>
                             <p class="title">Lead Developer</p>
@@ -142,19 +142,21 @@
         <a href="#profile" class="btn btn-dark btn-lg proceed">&#x21F2; Вход/Регистрация</a>
         <div class="container">
             <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h2>Каталог</h2>
-                    <hr class="small">
-                    <div id="menuBall4" class="menuBall">
-                        <a href="catalogue.html" class="ball yellowball">
-                            <div class="menuText">
-                                Разгледай
-                            </div>
-                        </a>
+                <div class="buttons">
+                    <div class="col-lg-10 col-lg-offset-1 text-center" style="margin-bottom: 430px;">
+                        <span>  @Html.ActionLink("Каталог", "ListAllDonors", "Donor", null, new { @class = "log" })</span>
+                        <hr class="small">
+                        <div id="menuBall4" class="menuBall" style="margin-left: 10px;">
+                            <a href="@Url.Action("ListAllDonors", "Donor")" class="ball yellowball">
+                                <div class="menuText">
+                                    Разгледай
+                                </div>
+                            </a>
+                        </div>
                     </div>
+                    </div>
+                    <!-- /.col-lg-10 -->
                 </div>
-                <!-- /.col-lg-10 -->
-            </div>
             <!-- /.row -->
         </div>
         <!-- /.container -->
@@ -173,14 +175,14 @@
                         }
                         else
                         {
-                            <span>  @Html.ActionLink("Вход/Регистрация", "Login", "Account", null, new { @class = "log" })</span>
+                            <span>  @Html.ActionLink("Вход", "Login", "Account", null, new { @class = "log" })</span>
                         }
                     </div>
                    
                         
                         if (isUserLogged)
                         {
-                            <div id="menuBall1" class="menuBall">
+                            <div id="menuBall1" class="menuBall" style="margin-left: 50px;">
                                 <a href="@Url.Action("MyProfile", "Account")" class="ball blueball">
                                     <div class="menuText">
                                         Натисни
@@ -190,7 +192,7 @@
                         }
                         else
                         {
-                            <div id="menuBall1" class="menuBall">
+                            <div id="menuBall1" class="menuBall"  style="margin-left: 50px;">
                                 <a href="@Url.Action("Registration", "Account")" class="ball blueball">
                                     <div class="menuText">
                                         Натисни

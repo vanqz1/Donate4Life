@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Donate4Life.Models
 {
@@ -18,5 +19,7 @@ namespace Donate4Life.Models
         public string ConfirmPassword { get; set; }
 
         public int Id { get; set; }
+
+        public List<Donor> favouriteDonors { get; set; }
     }
 }

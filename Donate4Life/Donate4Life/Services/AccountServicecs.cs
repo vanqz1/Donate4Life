@@ -21,5 +21,20 @@ namespace Donate4Life.Services
                 return isLoggedIn;
             } 
         }
+
+        public bool IsUserAdmin(int id)
+        {
+            using (var context = new Donate4LifeEntities1())
+            {
+                var user = context.Users.FirstOrDefault(s => s.Id == id);
+
+                if (user == null)
+                {
+                    return false;
+                }
+
+                return user.IsAdmin;
+            }
+        }
     }
 }

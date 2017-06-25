@@ -1,0 +1,188 @@
+﻿@using Donate4Life.Models;
+@model Donate4Life.Models.EditProfile
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Donate4Life</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/css/stylish-portfolio.css" rel="stylesheet">
+
+    <link href="/css/login.css" rel="stylesheet">
+    <link href="/css/profile.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+          type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+    @Html.Partial("~/Views/Partials/SideBar.cshtml");
+
+    <!-- Header -->
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="panel panel-login">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        @Html.ActionLink("Моят профил", "MyProfile", "Account", null, new { @id = "login-form-link" })
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <a href="#" class="active" id="register-form-link">Редактиране</a>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div>
+                                                            <h4 class="change"> Промяна на имейл</h4>
+                                                        </div>
+                                                        @using(Html.BeginForm("ChangeEmail", "Account"))
+                                                        {
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Текущ имейл", @value = "", @style = "font-size: 14px;" } })
+                                                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.NewEmail, new { htmlAttributes = new { @class = "form-control", @placeholder = "Нов имейл", @style = "font-size: 14px;" } })
+                                                                    @Html.ValidationMessageFor(model => model.NewEmail, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Парола", @style = "font-size: 14px;",  @type = "password" } })
+                                                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    @if (TempData["errorEmail"] != null)
+                                                                    {
+                                                                        <div class="text-danger"> @TempData["errorEmail"].ToString() </div>
+                                                                    }
+                                                                    @if (TempData["successChangeEmail"] != null)
+                                                                    {
+                                                                        <div style="color: green;"> Успешна сменен имейл! </div>
+                                                                    }
+                                                                    <div class="row">
+                                                                        <div class="col-sm-6 col-sm-offset-3">
+                                                                            <input type="submit" name="email-submit" id="email-submit" tabindex="6" class="form-control btn btn-register" value="Запази промените">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        }
+
+                                                        @using(Html.BeginForm("ChangePassword", "Account"))
+                                                        {
+                                                                <div>
+                                                                    <h4 class="change1"> Промяна на парола</h4>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Текущ имейл", @value = "", @style = "font-size: 14px;" } })
+                                                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Парола", @style = "font-size: 14px;" , @type = "password" } })
+                                                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(model => model.NewPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Нова парола", @style = "font-size: 14px;", @type = "password" } })
+                                                                    @Html.ValidationMessageFor(model => model.NewPassword, "", new { @class = "text-danger" })
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="row">
+                                                                        @if (TempData["errorPass"] != null)
+                                                                        {
+                                                                            <div class="text-danger"> @TempData["errorPass"].ToString() </div>
+                                                                        }
+                                                                        @if (TempData["successChangePass"] != null)
+                                                                        {
+                                                                            <div style="color: green;"> Успешна сменена парола! </div>
+                                                                        }
+                                                                        <div class="col-sm-6 col-sm-offset-3">
+                                                                            <input type="submit" name="email-submit" id="email-submit" tabindex="4" class="form-control btn btn-register" value="Запази промените">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container" id="footer">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4>
+                        <strong>Donate4Life</strong>
+                    </h4>
+                    <br>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                        </li>
+                    </ul>
+                    <hr class="small">
+                    <p class="text-muted">Copyright &copy; Donate4Life 2017</p>
+                </div>
+            </div>
+        </div>
+        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+
+</body>
+
+</html>

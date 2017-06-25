@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="SqlSite" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Projects\\Donate4Life\\Donate4Life\\Donate4Life\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Projects\\Donate4Life\\Donate4Life\\Donate4Life\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="Donate4LifeEntities-Web.config Connection String" description="" value="data source=tcp:donate4life.database.windows.net,1433;initial catalog=Donate4Life;user id=donate4lifeadmin@donate4life.database.windows.net;password=123v123mvm@;MultipleActiveResultSets=False" tags="" />
+  <parameter name="Donate4LifeEntities1-Web.config Connection String" description="" value="metadata=res://*/context.csdl|res://*/context.ssdl|res://*/context.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=tcp:donate4life.database.windows.net,1433;Initial Catalog=Donate4Life;User ID=donate4lifeadmin@donate4life.database.windows.net;Password=123v123mvm@&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Projects\\Donate4Life\\Donate4Life\\Donate4Life\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Donate4LifeEntities1']/@connectionString" />
+  </parameter>
+  <parameter name="MovieDBContext-Web.config Connection String" description="" value="data source=tcp:donate4life.database.windows.net,1433;initial catalog=Donate4Life;user id=donate4lifeadmin@donate4life.database.windows.net;password=123v123mvm@;MultipleActiveResultSets=False" tags="" />
+</parameters>

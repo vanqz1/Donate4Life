@@ -41,7 +41,7 @@
 
     <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-   @Html.Partial("~/Views/Partials/SideBar.cshtml");
+    @Html.Partial("~/Views/Partials/SideBar.cshtml");
 
     <!-- Header -->
     <header id="top" class="header">
@@ -98,6 +98,65 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Предпочитани</h2>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+
+                    @if (Model != null)
+                    {
+                        foreach (var donor in Model.favouriteDonors)
+                        {
+                            <div class="panel panel-info" style="margin-left: 20px;">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Донор @donor.Id <span></span></h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="/img/logo_min.png" class="img-circle img-responsive"> </div>
+
+                                        <div class=" col-md-9 col-lg-9 ">
+                                            <table class="table table-user-information">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Години:</td>
+                                                        <td>@donor.Age</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Населено място:</td>
+                                                        <td>@donor.Town</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Височина:</td>
+                                                        <td>@donor.Height</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <tr>
+                                                        <td>Цвят на очите:</td>
+                                                        <td>@donor.EyeColor</td>
+                                                    </tr>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            @Html.ActionLink("Разгледай", "DonorDetails", "Donor", donor, new { @class = "btn btn-primary" })
+                                            @{
+                                                var isUserLoggedIn = Convert.ToInt32(Session["UserId"]) != 0;
+                                                if (isUserLoggedIn)
+                                                {
+                                                    @Html.ActionLink("Премахни от предпочитани", "RemoveDonorFromFavourites", "Donor", donor, new { @class = "btn btn-danger" })
+                                                }
+
+                                                var isUserAdmin = new Donate4Life.Services.AccountService().IsUserAdmin(Convert.ToInt32(Session["UserId"]));
+
+                                                if (isUserAdmin)
+                                                {
+                                                    @Html.ActionLink("Редактирай", "EditDonor", "Donor", donor, new { @class = "btn btn-danger" })
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           }
+                       }
                 </div>
             </div>
         </div>

@@ -243,4 +243,3 @@ C:\Projects\Donate4Life\Donate4Life\Donate4Life\bin\Microsoft.Owin.Security.Twit
 C:\Projects\Donate4Life\Donate4Life\Donate4Life\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Projects\Donate4Life\Donate4Life\Donate4Life\obj\Debug\Donate4Life.dll
 C:\Projects\Donate4Life\Donate4Life\Donate4Life\obj\Debug\Donate4Life.pdb
-C:\Projects\Donate4Life\Donate4Life\Donate4Life\obj\Debug\Donate4Life.csprojResolveAssemblyReference.cache

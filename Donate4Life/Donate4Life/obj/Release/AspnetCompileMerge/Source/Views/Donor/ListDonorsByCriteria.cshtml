@@ -1,0 +1,43 @@
+﻿@model Donate4Life.Models.Criterias
+
+@{
+    var criterias = new Donate4Life.Models.CriteriaMenus();
+}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Каталог</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            @using (Html.BeginForm("ListDonorsByOtherCriteria", "Donor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="col-md-12">
+                    @Html.DropDownListFor(model => model.OtherCriteria, new SelectList(criterias.other), new { @class = "form-control", @style = "font-size: 14px;" })
+                    <button id="search" type="submit" class="btn btn-primary" style="margin-top: -34px; margin-bottom: 20px;"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="criteria">
+    @using (Html.BeginForm("ListDonorsByCriteria", "Donor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <p>Критерии</p>
+        <div class="criteria_titles">Години</div>
+        @Html.DropDownListFor(model => model.Age, new SelectList(criterias.listAge), new { @class = "form-control", @style = "font-size: 14px;" })
+        <div class="criteria_titles">Ръст</div>
+        @Html.DropDownListFor(model => model.Height, new SelectList(criterias.listHeight), new { @class = "form-control", @style = "font-size: 14px;" })
+
+        <div class="criteria_titles">Тегло</div>
+        @Html.DropDownListFor(model => model.Kilous, new SelectList(criterias.listWeight), new { @class = "form-control", @style = "font-size: 14px;" })
+        <div class="criteria_titles">Цвят на очите</div>
+        @Html.DropDownListFor(model => model.EyeColor, new SelectList(criterias.listEyeColor), new { @class = "form-control", @style = "font-size: 14px;" })
+        <div class="criteria_titles">Цвят на косата</div>
+        @Html.DropDownListFor(model => model.HairColor, new SelectList(criterias.listHairColor), new { @class = "form-control", @style = "font-size: 14px;" })
+        <br />
+        <button type="submit" class="btn btn-primary search"><span class="glyphicon glyphicon-search" aria-hidden="true"><span>&nbsp;Търси</span></span></button>
+    }
+</div>

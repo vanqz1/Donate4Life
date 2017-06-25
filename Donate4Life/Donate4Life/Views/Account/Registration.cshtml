@@ -41,7 +41,7 @@
 
     <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-    @Html.Partial("~/Views/Partials/SideBar.cshtml");
+    @Html.Partial("~/Views/Partials/SideBar.cshtml")
 
     <!-- Header -->
     <header id="top" class="header">
@@ -86,9 +86,9 @@
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-sm-6 col-sm-offset-3">
-                                                         @Html.ValidationSummary(true, null,new { @class = "text-danger" });
+                                                         @Html.ValidationSummary(true, null,new { @class = "text-danger" })
                                                          @if(TempData["success"] != null) {
-                                                                <div style="color: green;"> Успешна регистрация. Моля впишете се! </div>
+                                                                <div style="color: green"> Успешна регистрация. Моля впишете се! </div>
                                                           }
                                                                 <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Регистрирай се">
                                                             </div>

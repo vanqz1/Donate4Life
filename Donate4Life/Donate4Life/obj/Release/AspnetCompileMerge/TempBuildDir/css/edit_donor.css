@@ -1,0 +1,18 @@
+#donor {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,207cca+99,207cca+99,7db9e8+100 */
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(32,124,202,1) 99%, rgba(32,124,202,1) 99%, rgba(125,185,232,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(32,124,202,1) 99%,rgba(32,124,202,1) 99%,rgba(125,185,232,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(32,124,202,1) 99%,rgba(32,124,202,1) 99%,rgba(125,185,232,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+}
+input{
+    max-width: 180px;
+    min-width: 20px;
+}
+textarea{
+    max-width: 180px;
+    min-width: 20px;
+    
+}
+

@@ -1,6 +1,7 @@
 ﻿using Donate4Life.Models;
 using Donate4Life.Services;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -129,6 +130,27 @@ namespace Donate4Life.Controllers
                     {
                         return RedirectToAction("Index", "Home");
                     }
+                    
+
+                    var favDonors = user.UsersFavourites.Select(s => s.Donors);
+                    var listDonors = new List<Donor>();
+
+                    foreach (var donor in favDonors)
+                    {
+                        listDonors.Add(new Models.Donor
+                        {
+                            AddedDay = donor.AddedDate,
+                            Age = donor.Age,
+                            Description = donor.Description,
+                            EyeColor = donor.EyeColor,
+                            HairColor = donor.HairColor,
+                            Height = donor.Height,
+                            Id = donor.Id,
+                            Kilous = donor.Kilos,
+                            Town = donor.Town,
+                            Views = donor.Views
+                        });
+                    }
 
                     if (user.IsAdmin)
                     {
@@ -136,7 +158,8 @@ namespace Donate4Life.Controllers
                         {
                             Username = user.UserName,
                             Email = user.Email,
-                            Id = user.Id
+                            Id = user.Id,
+                            favouriteDonors = listDonors
                         });
                     }
 
@@ -144,7 +167,8 @@ namespace Donate4Life.Controllers
                     {
                         Username = user.UserName,
                         Email = user.Email,
-                        Id = user.Id
+                        Id = user.Id,
+                        favouriteDonors = listDonors
                     });
                 }
             }
